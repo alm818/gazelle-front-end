@@ -7,7 +7,7 @@ import { debounce } from 'lib/utilities';
 const categories = [
   "Category 1",
   "Category 2",
-  "Category 3"
+  "Category 3",
 ];
 
 export default class EditorArticleController extends FalcorController {
@@ -25,7 +25,7 @@ export default class EditorArticleController extends FalcorController {
       authorsDeleted: {},
       changesObject: {
         mainForm: false,
-        authors: false
+        authors: false,
       }
     });
     
@@ -52,7 +52,7 @@ export default class EditorArticleController extends FalcorController {
         // this.setState is not a synchronous function, so we check with what will become the new changesObject
         this.checkFormChanges(newChangesObject);
         this.safeSetState({
-          changesObject: newChangesObject
+          changesObject: newChangesObject,
         });
       }
     }, 500);
@@ -68,7 +68,7 @@ export default class EditorArticleController extends FalcorController {
       changed: false,
       saving: false,
       authorsAdded: {},
-      authorsDeleted: {}
+      authorsDeleted: {},
     });
   }
 
@@ -79,7 +79,7 @@ export default class EditorArticleController extends FalcorController {
     });
     if (changedFlag !== this.state.changed) {
       this.safeSetState({
-        changed: changedFlag
+        changed: changedFlag,
       });
     }
   }
@@ -99,7 +99,7 @@ export default class EditorArticleController extends FalcorController {
       // this.setState is not a synchronous function, so we check with what will become the new changesObject
       this.checkFormChanges(newChangesObject);
       this.safeSetState({
-        changesObject: newChangesObject
+        changesObject: newChangesObject,
       });
     }
   }
@@ -121,19 +121,19 @@ export default class EditorArticleController extends FalcorController {
 
     // Change data asynchronously
     this.safeSetState({
-      saving: true
+      saving: true,
     });
     setTimeout(
       () => {
         Promise.resolve("success").then(() => {
           // Just use falcor to change data here instead of window reload
           this.safeSetState({
-            changed: false
+            changed: false,
           });
           setTimeout(() => {
             window.location.reload();
             this.safeSetState({
-              saving: false
+              saving: false,
             })
           }, 1000);
       });
@@ -148,7 +148,7 @@ export default class EditorArticleController extends FalcorController {
       newValue[slug] = false;
       let newAuthorsDeleted = Object.assign({}, this.state.authorsDeleted, newValue);
       this.safeSetState({
-        authorsDeleted: newAuthorsDeleted
+        authorsDeleted: newAuthorsDeleted,
       });      
     }
     else {
@@ -163,7 +163,7 @@ export default class EditorArticleController extends FalcorController {
       newValue[slug] = slug;
       let newAuthorsAdded = Object.assign({}, this.state.authorsAdded, newValue);
       this.safeSetState({
-        authorsAdded: newAuthorsAdded
+        authorsAdded: newAuthorsAdded,
       });
     }
   }
@@ -174,14 +174,14 @@ export default class EditorArticleController extends FalcorController {
       newValue[slug] = true;
       let newAuthorsDeleted = Object.assign({}, this.state.authorsDeleted, newValue);
       this.safeSetState({
-        authorsDeleted: newAuthorsDeleted
+        authorsDeleted: newAuthorsDeleted,
       });
     }
     else {
       let copy = Object.assign({}, this.state.authorsAdded);
       delete copy[slug];
       this.safeSetState({
-        authorsAdded: copy
+        authorsAdded: copy,
       });
     }
   }
