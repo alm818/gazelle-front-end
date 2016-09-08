@@ -70,7 +70,7 @@ export default class IssueController extends FalcorController {
          * }
          */
         let renderCategories =
-          // Render nothing if this.props.articles is empty
+          // Render nothing if categories is empty
           _.map((issueData.categories || []), (category) => {
             //console.log(category);
             return (
